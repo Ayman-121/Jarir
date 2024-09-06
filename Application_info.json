@@ -1,8 +1,8 @@
 [{
-  "word_part1": "Welby",
-  "word_part2": "Nouch",
-  "discerption": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-  "price": 2804,
+  "word_part1": "freezer",
+  "word_part2": "Here",
+  "discerption": "This Should be a freezer",
+  "price": 2104,
   "save": 1,
   "rate": 1,
   "curreny": "USD"
