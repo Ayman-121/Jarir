@@ -1,92 +1,1611 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ayman</title>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Koulen&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <!--
-      font-family: 'Koulen', cursive;
-      font-family: 'Dancing Script', cursive;
-      font-family: 'Bangers', cursive; 
-      font-family: 'Reem Kufi', sans-serif;
-        عربي تخبيص
-      font-family: 'Rakkas', cursive;
-        عربي ثقيل
-      font-family: 'Cairo', sans-serif;
-        عربي اصلي
-    -->
+    <title>Jarir Bookstore - Online Shopping in KSA</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Cairo', sans-serif;
+      }
+
+      :root {
+        --primary-blue: #0066b2;
+        --secondary-blue: #003d82;
+        --light-gray: #f5f5f5;
+        --border-gray: #ddd;
+        --red: #e31837;
+      }
+
+      body {
+        background-color: #f8f8f8;
+      }
+
+      /* Header Styles */
+      .header {
+        width: 100%;
+        display: grid;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
+        position: fixed;
+        background-color: white;
+        z-index: 10;
+      }
+
+      .top-bar {
+        background-color: var(--light-gray);
+        padding: 8px 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .top-bar ul {
+        display: flex;
+        gap: 20px;
+      }
+
+      .top-bar ul li {
+        font-size: 14px;
+        color: #555;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .top-bar ul li i {
+        margin-right: 5px;
+        font-size: 12px;
+      }
+
+      .top-bar ul li:hover {
+        color: var(--primary-blue);
+      }
+
+      .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+      }
+
+      .logo {
+        max-width: 160px;
+      }
+
+      .search-container {
+        flex: 1;
+        max-width: 600px;
+        margin: 0 30px;
+        position: relative;
+      }
+
+      .search-container input {
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-gray);
+        background-color: var(--light-gray);
+        font-size: 15px;
+      }
+
+      .search-container button {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #666;
+        cursor: pointer;
+      }
+
+      .header-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .header-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .header-icon i {
+        font-size: 20px;
+        color: var(--primary-blue);
+        margin-bottom: 5px;
+      }
+
+      .header-icon span {
+        font-size: 12px;
+        color: #333;
+      }
+
+      .cart-icon {
+        position: relative;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--red);
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+      }
+
+      /* Navigation */
+      .nav-tabs {
+        background-color: #fff;
+        border-top: 1px solid var(--border-gray);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      .nav-tabs ul {
+        display: flex;
+        padding: 0 40px;
+        overflow-x: auto;
+      }
+
+      .nav-tabs ul li {
+        padding: 15px 20px;
+        white-space: nowrap;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        position: relative;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+
+      .nav-tabs ul li:hover {
+        color: var(--primary-blue);
+      }
+
+      .nav-tabs ul li.active {
+        color: var(--primary-blue);
+        border-bottom: 3px solid var(--primary-blue);
+      }
+
+      .nav-tabs ul li i {
+        margin-left: 5px;
+        font-size: 12px;
+      }
+
+      /* Banner Section */
+      .hero-section {
+        padding-top: 160px;
+        width: 100%;
+      }
+
+      .banner-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+      }
+
+      .main-banner {
+        flex: 2;
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        position: relative;
+      }
+
+      .main-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.5s ease;
+      }
+
+      .banner-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+
+      .banner-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+      }
+
+      .banner-dot.active {
+        background-color: white;
+      }
+
+      .side-banners {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .side-banner {
+        height: 190px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      }
+
+      .side-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* Categories */
+      .categories-section {
+        margin: 40px auto;
+        width: 90%;
+        max-width: 1400px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .view-all {
+        font-size: 14px;
+        color: var(--primary-blue);
+        cursor: pointer;
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+      }
+
+      .category-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        text-align: center;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .category-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .category-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: contain;
+        padding: 15px;
+      }
+
+      .category-name {
+        padding: 10px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* Featured Products */
+      .products-section {
+        margin: 40px auto;
+        width: 90%;
+        max-width: 1400px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        position: relative;
+        padding: 15px;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: var(--red);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .product-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .product-info h3 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+        height: 40px;
+        overflow: hidden;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .current-price {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-blue);
+      }
+
+      .old-price {
+        font-size: 14px;
+        color: #999;
+        text-decoration: line-through;
+      }
+
+      .discount-percent {
+        font-size: 12px;
+        color: var(--red);
+        font-weight: 600;
+      }
+
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+
+      .star {
+        color: #ffc107;
+        font-size: 12px;
+      }
+
+      .rating-count {
+        font-size: 12px;
+        color: #777;
+      }
+
+      .product-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .add-to-cart {
+        background-color: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+        background-color: var(--secondary-blue);
+      }
+
+      .wishlist-btn {
+        background: none;
+        border: none;
+        color: #999;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .wishlist-btn:hover {
+        color: var(--red);
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #333;
+        color: white;
+        padding: 50px 0 20px;
+      }
+
+      .footer-columns {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column ul li a {
+        color: #bbb;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-column ul li a:hover {
+        color: white;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icon {
+        width: 35px;
+        height: 35px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      }
+
+      .footer-bottom {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 20px;
+        border-top: 1px solid #555;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copyright {
+        font-size: 13px;
+        color: #bbb;
+      }
+
+      .payment-methods {
+        display: flex;
+        gap: 10px;
+      }
+
+      .payment-method {
+        width: 40px;
+        height: 25px;
+        background-color: white;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Dropdown menus */
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        min-width: 200px;
+        z-index: 100;
+        display: none;
+        padding: 10px 0;
+      }
+
+      .dropdown-menu.active {
+        display: block;
+      }
+
+      .dropdown-menu li {
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .dropdown-menu li:hover {
+        background-color: var(--light-gray);
+      }
+
+      /* Mobile menu */
+      .mobile-menu-btn {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--primary-blue);
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+      }
+
+      .mobile-menu.active {
+        left: 0;
+      }
+
+      .mobile-menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .mobile-menu-close {
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .mobile-menu-body {
+        padding: 20px;
+      }
+
+      .mobile-menu-body ul li {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-gray);
+      }
+
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 999;
+        display: none;
+      }
+
+      .mobile-menu-overlay.active {
+        display: block;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 1024px) {
+        .main-header {
+          padding: 15px 20px;
+        }
+        
+        .nav-tabs ul {
+          padding: 0 20px;
+        }
+        
+        .nav-tabs ul li {
+          padding: 15px 10px;
+          font-size: 14px;
+        }
+        
+        .banner-container {
+          flex-direction: column;
+        }
+        
+        .side-banners {
+          flex-direction: row;
+        }
+        
+        .side-banner {
+          flex: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .top-bar ul {
+          display: none;
+        }
+        
+        .logo {
+          max-width: 120px;
+        }
+        
+        .main-header {
+          padding: 10px 15px;
+        }
+        
+        .search-container {
+          margin: 0 10px;
+        }
+        
+        .header-icon span {
+          display: none;
+        }
+        
+        .nav-tabs {
+          overflow-x: auto;
+        }
+        
+        .mobile-menu-btn {
+          display: block;
+        }
+        
+        .nav-tabs ul {
+          padding: 0 10px;
+        }
+        
+        .nav-tabs ul li {
+          padding: 10px 8px;
+          font-size: 13px;
+        }
+        
+        .categories-grid {
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        
+        .products-grid {
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        }
+        
+        .footer-columns {
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        .footer-bottom {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-icons {
+          gap: 10px;
+        }
+        
+        .header-icon i {
+          font-size: 18px;
+        }
+        
+        .search-container input {
+          padding: 8px 15px;
+        }
+        
+        .side-banners {
+          flex-direction: column;
+        }
+        
+        .categories-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .products-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .footer-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="header">
-      <ul class="top">
-        <li>English</li>
-        <li>Country</li>
-        <li>Branches</li>
-        <li>Help</li>
-        <li>Maintenance Requests</li>
-        <li>Delivery</li>
-        <li>Favorite</li>
-        <li>Sign In OR Login</li>
-        <li>
-          <i id="nav-hider" class="fa-solid fa-align-justify"></i>
-          <img
-            src="https://www.jarir.com/assets/images/logo/jarir.svg"
-            alt=""
-          />
-        </li>
-      </ul>
-      <div class="main-header">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <input type="text" placeholder="Search" />
-        <img src="https://www.jarir.com/assets/images/logo/jarir.svg" alt="" />
-      </div>
-      <div class="header-tab">
+      <div class="top-bar">
         <ul>
-          <li class="categories">
-            All Categories <i class="fa-solid fa-angle-down"></i>
-          </li>
-          <li class="shop">
-            Shop By Brand <i class="fa-solid fa-angle-down"></i>
-          </li>
-          <li class="tickets">Jarir Tickets</li>
-          <li class="online">Online Exclusive</li>
-          <li class="offers">Weekly Offers</li>
-          <li class="arrival">New Arrivals</li>
-          <li class="trending">Trending Now</li>
-          <li class="renewed">Renewed Products</li>
+          <li><i class="fas fa-globe"></i> English</li>
+          <li><i class="fas fa-map-marker-alt"></i> Saudi Arabia</li>
+          <li><i class="fas fa-store"></i> Branches</li>
+          <li><i class="fas fa-question-circle"></i> Help</li>
+          <li><i class="fas fa-tools"></i> Maintenance</li>
+          <li><i class="fas fa-truck"></i> Delivery</li>
+          <li><i class="fas fa-heart"></i> Favorites</li>
+          <li><i class="fas fa-user"></i> Sign In / Register</li>
+        </ul>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+      
+      <div class="main-header">
+        <img src="https://www.jarir.com/assets/images/logo/jarir.svg" alt="Jarir Bookstore" class="logo">
+        
+        <div class="search-container">
+          <input type="text" placeholder="What are you looking for?">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+        
+        <div class="header-icons">
+          <div class="header-icon">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+          </div>
+          <div class="header-icon">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+          </div>
+          <div class="header-icon cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <div class="cart-count">0</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="nav-tabs">
+        <ul>
+          <li class="active">All Categories <i class="fas fa-chevron-down"></i></li>
+          <li>Shop By Brand <i class="fas fa-chevron-down"></i></li>
+          <li>Jarir Tickets</li>
+          <li>Online Exclusive</li>
+          <li>Weekly Offers</li>
+          <li>New Arrivals</li>
+          <li>Trending Now</li>
+          <li>Renewed Products</li>
         </ul>
       </div>
     </div>
-    <div class="landing">
-      <div class="container"></div>
+    
+    <div class="hero-section">
+      <div class="banner-container">
+        <div class="main-banner">
+          <img src="/api/placeholder/1200/400" alt="Main Promotion" id="main-banner-img">
+          <div class="banner-controls">
+            <div class="banner-dot active"></div>
+            <div class="banner-dot"></div>
+            <div class="banner-dot"></div>
+            <div class="banner-dot"></div>
+          </div>
+        </div>
+        <div class="side-banners">
+          <div class="side-banner">
+            <img src="/api/placeholder/600/190" alt="Side Promo 1">
+          </div>
+          <div class="side-banner">
+            <img src="/api/placeholder/600/190" alt="Side Promo 2">
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="main.js"></script>
+    
+    <div class="categories-section">
+      <div class="section-title">
+        Shop by Category
+        <span class="view-all">View All <i class="fas fa-chevron-right"></i></span>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Phones & Tablets">
+          <div class="category-name">Phones & Tablets</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Computers & Accessories">
+          <div class="category-name">Computers</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="TVs & Entertainment">
+          <div class="category-name">TVs</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Gaming">
+          <div class="category-name">Gaming</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Smart Devices">
+          <div class="category-name">Smart Devices</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Office Supplies">
+          <div class="category-name">Office Supplies</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Books">
+          <div class="category-name">Books</div>
+        </div>
+        <div class="category-card">
+          <img src="/api/placeholder/150/120" alt="Stationery">
+          <div class="category-name">Stationery</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="products-section">
+      <div class="section-title">
+        Featured Products
+        <span class="view-all">View All <i class="fas fa-chevron-right"></i></span>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-badge">20% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="iPhone 15 Pro">
+          </div>
+          <div class="product-info">
+            <h3>iPhone 15 Pro 256GB - Titanium Black</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 4,799</span>
+              <span class="old-price">SAR 5,999</span>
+              <span class="discount-percent">20%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(124)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">New</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="MacBook Air">
+          </div>
+          <div class="product-info">
+            <h3>MacBook Air M3 13-inch - Midnight</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 5,299</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="rating-count">(89)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">15% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Samsung Galaxy S25">
+          </div>
+          <div class="product-info">
+            <h3>Samsung Galaxy S25 Ultra - Silver 512GB</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 4,249</span>
+              <span class="old-price">SAR 4,999</span>
+              <span class="discount-percent">15%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="far fa-star"></i></span>
+              <span class="rating-count">(76)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Sony PlayStation 5 Slim">
+          </div>
+          <div class="product-info">
+            <h3>Sony PlayStation 5 Slim Digital Edition</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 1,899</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(213)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">25% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Samsung 4K QLED TV">
+          </div>
+          <div class="product-info">
+            <h3>Samsung 55" 4K QLED Smart TV Q80C</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 3,749</span>
+              <span class="old-price">SAR 4,999</span>
+              <span class="discount-percent">25%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="far fa-star"></i></span>
+              <span class="rating-count">(98)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="iPad Air">
+          </div>
+          <div class="product-info">
+            <h3>iPad Air 11" M2 Chip 256GB - Blue</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 3,399</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(145)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">10% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Microsoft Surface Laptop">
+          </div>
+          <div class="product-info">
+            <h3>Microsoft Surface Laptop 6 - i7, 16GB, 512GB</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 6,299</span>
+              <span class="old-price">SAR 6,999</span>
+              <span class="discount-percent">10%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="far fa-star"></i></span>
+              <span class="rating-count">(67)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Nintendo Switch OLED">
+          </div>
+          <div class="product-info">
+            <h3>Nintendo Switch OLED Model - White</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 1,599</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="rating-count">(182)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- New Arrivals Section -->
+    <div class="products-section">
+      <div class="section-title">
+        New Arrivals
+        <span class="view-all">View All <i class="fas fa-chevron-right"></i></span>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-badge">New</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Google Pixel 8 Pro">
+          </div>
+          <div class="product-info">
+            <h3>Google Pixel 8 Pro - 256GB Obsidian</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 3,999</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(54)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">New</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Xbox Series X">
+          </div>
+          <div class="product-info">
+            <h3>Xbox Series X Console - 1TB Black</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 2,299</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="rating-count">(112)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">New</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Bose QuietComfort Ultra">
+          </div>
+          <div class="product-info">
+            <h3>Bose QuietComfort Ultra Headphones - Black</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 1,599</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(78)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">New</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Apple Watch Ultra 2">
+          </div>
+          <div class="product-info">
+            <h3>Apple Watch Ultra 2 - Titanium Case with Trail Loop</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 3,399</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="rating-count">(92)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weekly Offers Section -->
+    <div class="products-section">
+      <div class="section-title">
+        Weekly Offers
+        <span class="view-all">View All <i class="fas fa-chevron-right"></i></span>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-badge">30% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Canon EOS R8">
+          </div>
+          <div class="product-info">
+            <h3>Canon EOS R8 Mirrorless Camera with RF 24-50mm Lens</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 6,299</span>
+              <span class="old-price">SAR 8,999</span>
+              <span class="discount-percent">30%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(47)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">25% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Dell XPS 15">
+          </div>
+          <div class="product-info">
+            <h3>Dell XPS 15 - i9, 32GB RAM, 1TB SSD, RTX 4070</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 8,999</span>
+              <span class="old-price">SAR 11,999</span>
+              <span class="discount-percent">25%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="far fa-star"></i></span>
+              <span class="rating-count">(63)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">40% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="Logitech MX Master 3S">
+          </div>
+          <div class="product-info">
+            <h3>Logitech MX Master 3S Wireless Mouse - Graphite</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 299</span>
+              <span class="old-price">SAR 499</span>
+              <span class="discount-percent">40%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="rating-count">(215)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <div class="product-badge">35% OFF</div>
+          <div class="product-image">
+            <img src="/api/placeholder/200/180" alt="LG OLED TV">
+          </div>
+          <div class="product-info">
+            <h3>LG 65" OLED evo C4 4K Smart TV</h3>
+            <div class="product-price">
+              <span class="current-price">SAR 5,199</span>
+              <span class="old-price">SAR 7,999</span>
+              <span class="discount-percent">35%</span>
+            </div>
+            <div class="product-rating">
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star"></i></span>
+              <span class="star"><i class="fas fa-star-half-alt"></i></span>
+              <span class="rating-count">(87)</span>
+            </div>
+            <div class="product-actions">
+              <button class="add-to-cart">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Subscribe Section -->
+    <div class="subscribe-section" style="background-color: var(--primary-blue); padding: 40px 0; margin-top: 50px;">
+      <div style="width: 90%; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h2 style="color: white; margin-bottom: 15px; font-size: 28px;">Subscribe to Our Newsletter</h2>
+        <p style="color: white; margin-bottom: 25px; max-width: 600px;">Stay updated with the latest products, exclusive offers, and promotions.</p>
+        <div style="display: flex; max-width: 500px; width: 100%;">
+          <input type="email" placeholder="Enter your email address" style="flex: 1; padding: 12px 20px; border-radius: 8px 0 0 8px; border: none; font-size: 15px;">
+          <button style="background-color: var(--red); color: white; border: none; padding: 12px 25px; border-radius: 0 8px 8px 0; font-weight: 600; cursor: pointer;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping & Delivery</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">Payment Methods</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>About Jarir</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Stores</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Corporate Sales</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Sustainability</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Shop By Category</h3>
+          <ul>
+            <li><a href="#">Phones & Tablets</a></li>
+            <li><a href="#">Computers & Accessories</a></li>
+            <li><a href="#">TVs & Entertainment</a></li>
+            <li><a href="#">Gaming</a></li>
+            <li><a href="#">Smart Devices</a></li>
+            <li><a href="#">Books & Stationery</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Tech Reviews</a></li>
+            <li><a href="#">How-to Guides</a></li>
+            <li><a href="#">Product Manuals</a></li>
+            <li><a href="#">Software Downloads</a></li>
+            <li><a href="#">Warranty Information</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <ul>
+            <li><a href="#">Download Our App</a></li>
+            <li><a href="#">Subscribe to Newsletter</a></li>
+          </ul>
+          <div class="social-icons">
+            <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
+            <div class="social-icon"><i class="fab fa-twitter"></i></div>
+            <div class="social-icon"><i class="fab fa-instagram"></i></div>
+            <div class="social-icon"><i class="fab fa-youtube"></i></div>
+            <div class="social-icon"><i class="fab fa-linkedin-in"></i></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="copyright">
+          &copy; 2025 Jarir Bookstore. All Rights Reserved.
+        </div>
+        <div class="payment-methods">
+          <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+          <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+          <div class="payment-method"><i class="fab fa-cc-amex"></i></div>
+          <div class="payment-method"><i class="fab fa-apple-pay"></i></div>
+          <div class="payment-method"><i class="fas fa-money-bill-wave"></i></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <img src="https://www.jarir.com/assets/images/logo/jarir.svg" alt="Jarir Bookstore" style="max-width: 120px;">
+        <div class="mobile-menu-close">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="mobile-menu-body">
+        <ul>
+          <li>All Categories <i class="fas fa-chevron-right" style="float: right;"></i></li>
+          <li>Shop By Brand <i class="fas fa-chevron-right" style="float: right;"></i></li>
+          <li>Jarir Tickets</li>
+          <li>Online Exclusive</li>
+          <li>Weekly Offers</li>
+          <li>New Arrivals</li>
+          <li>Trending Now</li>
+          <li>Renewed Products</li>
+          <li>My Account <i class="fas fa-chevron-right" style="float: right;"></i></li>
+          <li>Wishlist</li>
+          <li>Shopping Cart</li>
+          <li>Language</li>
+          <li>Customer Service</li>
+          <li>Store Locator</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mobile-menu-overlay"></div>
+    
+    <script>
+      // Simple JavaScript for slider functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Banner slider
+        const bannerImages = [
+          '/api/placeholder/1200/400?text=Special+Offer',
+          '/api/placeholder/1200/400?text=New+Arrivals',
+          '/api/placeholder/1200/400?text=Up+to+40%+OFF',
+          '/api/placeholder/1200/400?text=Back+to+School'
+        ];
+        
+        const bannerDots = document.querySelectorAll('.banner-dot');
+        const mainBannerImg = document.getElementById('main-banner-img');
+        let currentBannerIndex = 0;
+        
+        function changeBanner(index) {
+          mainBannerImg.style.opacity = '0';
+          
+          setTimeout(() => {
+            mainBannerImg.src = bannerImages[index];
+            mainBannerImg.style.opacity = '1';
+            
+            // Update active dot
+            bannerDots.forEach((dot, i) => {
+              if (i === index) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }, 300);
+        }
+        
+        // Set up dot click events
+        bannerDots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            currentBannerIndex = index;
+            changeBanner(index);
+          });
+        });
+        
+        // Auto rotate banner
+        setInterval(() => {
+          currentBannerIndex = (currentBannerIndex + 1) % bannerImages.length;
+          changeBanner(currentBannerIndex);
+        }, 5000);
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.add('active');
+          mobileMenuOverlay.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          mobileMenuOverlay.classList.remove('active');
+        });
+        
+        mobileMenuOverlay.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          mobileMenuOverlay.classList.remove('active');
+        });
+        
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+        
+        addToCartButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            count++;
+            cartCount.textContent = count;
+            
+            // Animation effect
+            button.textContent = 'Added!';
+            button.style.backgroundColor = '#4CAF50';
+            
+            setTimeout(() => {
+              button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
+              button.style.backgroundColor = '';
+            }, 1000);
+          });
+        });
+        
+        // Wishlist functionality
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+        
+        wishlistButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const heartIcon = button.querySelector('i');
+            
+            if (heartIcon.classList.contains('far')) {
+              heartIcon.classList.remove('far');
+              heartIcon.classList.add('fas');
+              heartIcon.style.color = 'var(--red)';
+            } else {
+              heartIcon.classList.remove('fas');
+              heartIcon.classList.add('far');
+              heartIcon.style.color = '';
+            }
+          });
+        });
+      });
+    </script>
+    
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   </body>
 </html>
